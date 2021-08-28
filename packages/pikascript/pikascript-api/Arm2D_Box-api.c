@@ -22,10 +22,15 @@ void Arm2D_Box_setSizeMethod(PikaObj *self, Args *args){
     Arm2D_Box_setSize(self, x, y);
 }
 
+void Arm2D_Box_updateMethod(PikaObj *self, Args *args){
+    Arm2D_Box_update(self);
+}
+
 PikaObj *New_Arm2D_Box(Args *args){
     PikaObj *self = New_Arm2D_Element(args);
     class_defineMethod(self, "init()", Arm2D_Box_initMethod);
     class_defineMethod(self, "setColor(color:str)", Arm2D_Box_setColorMethod);
     class_defineMethod(self, "setSize(x:int,y:int)", Arm2D_Box_setSizeMethod);
+    class_defineMethod(self, "update()", Arm2D_Box_updateMethod);
     return self;
 }

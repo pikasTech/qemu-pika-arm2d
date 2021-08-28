@@ -8,6 +8,9 @@ void Arm2D_Box_init(PikaObj *self)
     obj_setInt(self, "sizeY", 50);
     obj_setStr(self, "color", "blue");
 }
+void Arm2D_Box_update(PikaObj *self)
+{
+}
 void Arm2D_Box_setColor(PikaObj *self, char *color)
 {
     obj_setStr(self, "color", color);

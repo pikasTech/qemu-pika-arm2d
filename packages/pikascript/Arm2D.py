@@ -40,6 +40,10 @@ class Element(TinyObj):
         pass
 
 class Box(Element):
+#   override
+    def update():
+        pass
+
     def init():
         pass
 
