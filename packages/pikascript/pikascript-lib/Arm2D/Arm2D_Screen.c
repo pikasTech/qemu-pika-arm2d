@@ -30,9 +30,17 @@ void Arm2D_Screen_update(PikaObj *self, void *ptTile)
     obj_setPtr(self, "ptTile", (void *)ptTile);
     obj_run(self, "background.update(ptTile)");
     obj_run(self, "elems.update(ptTile)");
+    arm_2d_region_t tSunRegion = {
+        .tLocation = {
+            .iX = 0,
+            .iY = 0,
+        },
+        .tSize = c_tPictureSun.tRegion.tSize,
+    };
+
     arm_2d_rgb16_tile_copy_with_colour_masking(&c_tPictureSun,
                                                ptTile,
-                                               NULL,
+                                               &tSunRegion,
                                                GLCD_COLOR_WHITE,
                                                ARM_2D_CP_MODE_FILL);
 }
