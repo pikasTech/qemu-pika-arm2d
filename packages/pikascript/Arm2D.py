@@ -68,5 +68,5 @@ class Screen(BaseObj):
     def init():
         pass
 
-    def update(ptTile: pointer, bIsNewFrame: pointer):
+    def update(ptTile: pointer, bIsNewFrame: int):
         pass

@@ -43,7 +43,7 @@ rotate_tile_t s_tSun = {
     .fAngle = 0.0,
 };
 
-void Arm2D_Screen_update(PikaObj *self, void * bIsNewFrame, void * ptTile)
+void Arm2D_Screen_update(PikaObj *self, int bIsNewFrame, void * ptTile)
 {
     obj_setPtr(self, "ptTile", (void *)ptTile);
     obj_run(self, "background.update(ptTile)");
