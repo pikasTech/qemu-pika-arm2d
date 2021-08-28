@@ -15,6 +15,7 @@ void Arm2D_Screen_init(PikaObj *self)
 }
 
 extern const uint8_t c_bmpSun[56 * 57 * sizeof(uint16_t)];
+
 const static arm_2d_tile_t c_tPictureSun = {
     .tRegion = {
         .tSize = {
@@ -25,22 +26,39 @@ const static arm_2d_tile_t c_tPictureSun = {
     .phwBuffer = (uint16_t *)c_bmpSun,
 };
 
-void Arm2D_Screen_update(PikaObj *self, void *ptTile)
+rotate_tile_t s_tSun = {
+    .ptTile = &c_tPictureSun,
+    .fAngleSpeed = 3.0f,
+    .tCentre = {
+        .iX = 0,
+        .iY = 0,
+    },
+    .tRegion = {
+        .tLocation = {
+            .iX = 200,
+            .iY = 200,
+        },
+        .tSize = c_tPictureSun.tRegion.tSize,
+    },
+    .fAngle = 0.0,
+};
+
+void Arm2D_Screen_update(PikaObj *self, void * bIsNewFrame, void * ptTile)
 {
     obj_setPtr(self, "ptTile", (void *)ptTile);
     obj_run(self, "background.update(ptTile)");
     obj_run(self, "elems.update(ptTile)");
-    arm_2d_region_t tSunRegion = {
-        .tLocation = {
-            .iX = 0,
-            .iY = 0,
-        },
-        .tSize = c_tPictureSun.tRegion.tSize,
-    };
 
-    arm_2d_rgb16_tile_copy_with_colour_masking(&c_tPictureSun,
-                                               ptTile,
-                                               &tSunRegion,
-                                               GLCD_COLOR_WHITE,
-                                               ARM_2D_CP_MODE_FILL);
+    arm_2dp_rgb565_tile_rotation(&(s_tSun.tOP),
+                                  s_tSun.ptTile,
+                                  ptTile,
+                                  &(s_tSun.tRegion),
+                                  s_tSun.tCentre,
+                                  s_tSun.fAngle,
+                                  GLCD_COLOR_WHITE);
+    // arm_2d_rgb16_tile_copy_with_colour_masking(&c_tPictureSun,
+    //                                            ptTile,
+    //                                            &tSunRegion,
+    //                                            GLCD_COLOR_WHITE,
+    //                                            ARM_2D_CP_MODE_FILL);
 }

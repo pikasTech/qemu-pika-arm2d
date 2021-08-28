@@ -11,5 +11,14 @@
 #include "BaseObj.h"
 
 uint16_t getColorCode(char *colorName);
+typedef struct
+{
+    arm_2d_op_rotate_t tOP;
+    const arm_2d_tile_t *ptTile;
+    float fAngle;
+    float fAngleSpeed;
+    arm_2d_location_t tCentre;
+    arm_2d_region_t tRegion;
+} rotate_tile_t;
 
 #endif
