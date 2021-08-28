@@ -1,6 +1,6 @@
 #include "Arm2D_common.h"
 
-void Arm2D_Element_update(PikaObj *self)
+void Arm2D_Element_update(PikaObj *self, void *ptTile)
 {
     /* need to be override */
     obj_setErrorCode(self, 1);
@@ -15,12 +15,12 @@ void Arm2D_Element_init(PikaObj *self)
 
 void Arm2D_Element_up(PikaObj *self, int y)
 {
-    obj_setInt(self, "posY", obj_getInt(self, "posY") + y);
+    obj_setInt(self, "posY", obj_getInt(self, "posY") - y);
 }
 
 void Arm2D_Element_down(PikaObj *self, int y)
 {
-    obj_setInt(self, "posY", obj_getInt(self, "posY") - y);
+    obj_setInt(self, "posY", obj_getInt(self, "posY") + y);
 }
 
 void Arm2D_Element_lift(PikaObj *self, int x)

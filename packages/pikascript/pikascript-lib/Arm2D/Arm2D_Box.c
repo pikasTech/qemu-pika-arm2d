@@ -8,8 +8,18 @@ void Arm2D_Box_init(PikaObj *self)
     obj_setInt(self, "sizeY", 50);
     obj_setStr(self, "color", "blue");
 }
-void Arm2D_Box_update(PikaObj *self)
+void Arm2D_Box_update(PikaObj *self, void *ptTile)
 {
+    int posX = obj_getInt(self, "posX");
+    int posY = obj_getInt(self, "posY");
+    int sizeX = obj_getInt(self, "sizeX");
+    int sizeY = obj_getInt(self, "sizeY");
+    char *color = obj_getStr(self, "color");
+    arm_2d_region_t tBox = {
+        .tLocation = {posX, posY},
+        .tSize = {sizeX, sizeY},
+    };
+    arm_2d_rgb16_fill_colour(ptTile, &tBox, getColorCode(color));
 }
 void Arm2D_Box_setColor(PikaObj *self, char *color)
 {

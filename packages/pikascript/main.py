@@ -11,7 +11,6 @@ screen.init()
 screen.background.setColor('white')
 
 print('hello world')
-
 print('mem used max:')
 mem.max()
 print('mem used now:')

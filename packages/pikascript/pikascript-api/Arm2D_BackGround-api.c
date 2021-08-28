@@ -21,10 +21,16 @@ void Arm2D_BackGround_setColorMethod(PikaObj *self, Args *args){
     Arm2D_BackGround_setColor(self, color);
 }
 
+void Arm2D_BackGround_updateMethod(PikaObj *self, Args *args){
+    void * ptTile = args_getPtr(args, "ptTile");
+    Arm2D_BackGround_update(self, ptTile);
+}
+
 PikaObj *New_Arm2D_BackGround(Args *args){
     PikaObj *self = New_TinyObj(args);
     class_defineMethod(self, "getColor()->str", Arm2D_BackGround_getColorMethod);
     class_defineMethod(self, "init()", Arm2D_BackGround_initMethod);
     class_defineMethod(self, "setColor(color:str)", Arm2D_BackGround_setColorMethod);
+    class_defineMethod(self, "update(ptTile:pointer)", Arm2D_BackGround_updateMethod);
     return self;
 }

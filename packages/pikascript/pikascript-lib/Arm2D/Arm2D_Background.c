@@ -10,6 +10,13 @@ char *Arm2D_BackGround_getColor(PikaObj *self)
     return obj_getStr(self, "color");
 }
 
+void Arm2D_BackGround_update(PikaObj *self, void *ptTile)
+{
+    char *color = obj_getStr(self, "color");
+    uint16_t backGroundColor = getColorCode(color);
+    arm_2d_rgb16_fill_colour(ptTile, NULL, backGroundColor);
+}
+
 void Arm2D_BackGround_setColor(PikaObj *self, char *color)
 {
     obj_setStr(self, "color", color);

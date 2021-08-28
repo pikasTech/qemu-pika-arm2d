@@ -39,7 +39,7 @@ static IMPL_PFB_ON_DRAW(__pfb_draw_handler_t)
     ARM_2D_UNUSED(pTarget);
     ARM_2D_UNUSED(bIsNewFrame);
 
-    obj_setPtr(pikaMain, "ptTile", ptTile);
+    obj_setPtr(pikaMain, "ptTile", (void *)ptTile);
     obj_run(pikaMain, "screen.update(ptTile)");
 
     return arm_fsm_rt_cpl;

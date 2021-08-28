@@ -12,5 +12,6 @@ PikaObj *New_Arm2D_BackGround(Args *args);
 char * Arm2D_BackGround_getColor(PikaObj *self);
 void Arm2D_BackGround_init(PikaObj *self);
 void Arm2D_BackGround_setColor(PikaObj *self, char * color);
+void Arm2D_BackGround_update(PikaObj *self, void * ptTile);
 
 #endif
