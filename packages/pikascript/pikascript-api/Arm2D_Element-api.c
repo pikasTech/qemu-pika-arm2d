@@ -37,6 +37,10 @@ void Arm2D_Element_upMethod(PikaObj *self, Args *args){
     Arm2D_Element_up(self, y);
 }
 
+void Arm2D_Element_updateMethod(PikaObj *self, Args *args){
+    Arm2D_Element_update(self);
+}
+
 PikaObj *New_Arm2D_Element(Args *args){
     PikaObj *self = New_TinyObj(args);
     class_defineMethod(self, "down(y:int)", Arm2D_Element_downMethod);
@@ -45,5 +49,6 @@ PikaObj *New_Arm2D_Element(Args *args){
     class_defineMethod(self, "move(x:int,y:int)", Arm2D_Element_moveMethod);
     class_defineMethod(self, "right(x:int)", Arm2D_Element_rightMethod);
     class_defineMethod(self, "up(y:int)", Arm2D_Element_upMethod);
+    class_defineMethod(self, "update()", Arm2D_Element_updateMethod);
     return self;
 }

@@ -11,8 +11,11 @@ class BackGround(TinyObj):
     def getColor() -> str:
         pass
 
+
 class ElementList(BaseObj):
-    pass
+    def update():
+        pass
+
 
 class Element(TinyObj):
     def init():
@@ -33,9 +36,14 @@ class Element(TinyObj):
     def down(y: int):
         pass
 
+    def update():
+        pass
 
 class Box(Element):
-    def setColor():
+    def init():
+        pass
+
+    def setColor(color: str):
         pass
 
     def setSize(x: int, y: int):
@@ -46,7 +54,7 @@ class Screen(BaseObj):
     background = BackGround()
     elems = ElementList()
 
-    def addBox(name:str):
+    def newBox(name: str):
         pass
 
     def init():
