@@ -1,5 +1,7 @@
 import PikaStdLib
 
+import RtThread
+
 print('hello world')
 mem = PikaStdLib.MemChecker()
 print('mem.max :')
