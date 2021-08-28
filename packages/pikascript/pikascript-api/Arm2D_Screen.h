@@ -9,5 +9,7 @@
 
 PikaObj *New_Arm2D_Screen(Args *args);
 
+void Arm2D_Screen_init(PikaObj *self);
+void Arm2D_Screen_update(PikaObj *self, void * ptTile);
 
 #endif

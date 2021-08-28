@@ -14,3 +14,9 @@ class BackGround(TinyObj):
 
 class Screen(BaseObj):
     background = BackGround()
+
+    def init():
+        pass
+
+    def update(ptTile: pointer):
+        pass

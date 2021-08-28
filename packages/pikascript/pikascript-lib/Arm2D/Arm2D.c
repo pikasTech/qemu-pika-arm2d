@@ -15,6 +15,42 @@
 
 extern PikaObj *pikaMain;
 
+uint16_t getColorCode(char *colorName)
+{
+    if(strEqu("white", colorName))
+    {
+         return GLCD_COLOR_WHITE;
+    }
+    if(strEqu("black", colorName))
+    {
+         return GLCD_COLOR_BLACK;
+    }
+    if(strEqu("red", colorName))
+    {
+         return GLCD_COLOR_RED;
+    }
+    if(strEqu("blue", colorName))
+    {
+         return GLCD_COLOR_BLUE;
+    }
+    if(strEqu("green", colorName))
+    {
+         return GLCD_COLOR_GREEN;
+    }
+}
+
+void Arm2D_Screen_init(PikaObj *self)
+{
+    obj_run(self, "background.init()");
+}
+
+void Arm2D_Screen_update(PikaObj *self, void * ptTile)
+{
+    char * color = obj_getStr(self, "background.color");
+    uint16_t backGroundColor = getColorCode(color);
+    arm_2d_rgb16_fill_colour(ptTile, NULL, backGroundColor);
+}
+
 void Arm2D_BackGround_init(PikaObj *self)
 {
     obj_setStr(self, "color", "white");
