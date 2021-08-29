@@ -10,6 +10,7 @@ char *Arm2D_BackGround_getColor(PikaObj *self)
     return obj_getStr(self, "color");
 }
 
+
 void Arm2D_BackGround_update(PikaObj *self, int bIsNewFrame, void * ptTile)
 {
     char *color = obj_getStr(self, "color");
