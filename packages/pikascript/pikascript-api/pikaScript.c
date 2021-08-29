@@ -12,6 +12,12 @@ PikaObj * pikaScriptInit(){
     obj_run(pikaMain, "screen.init()");
     obj_run(pikaMain, "screen.background.setColor('white')");
     obj_run(pikaMain, "screen.elems.s1.init()");
+    obj_run(pikaMain, "screen.elems.s2.init()");
+    obj_run(pikaMain, "screen.elems.s3.init()");
+    obj_run(pikaMain, "screen.elems.s1.move(100, 300)");
+    obj_run(pikaMain, "screen.elems.s1.speed(0.1)");
+    obj_run(pikaMain, "screen.elems.s2.centra(100, 100)");
+    obj_run(pikaMain, "screen.elems.s2.speed(0.5)");
     obj_run(pikaMain, "print('hello world')");
     obj_run(pikaMain, "print('mem used max:')");
     obj_run(pikaMain, "mem.max()");

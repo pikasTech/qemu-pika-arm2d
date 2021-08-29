@@ -66,6 +66,11 @@ class Star(Element):
     def init():
         pass
 
+    def centra(x: int, y: int):
+        pass
+
+    def speed(speed: float):
+        pass
 
 
 class Screen(BaseObj):

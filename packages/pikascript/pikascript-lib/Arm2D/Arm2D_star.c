@@ -11,13 +11,23 @@ const static arm_2d_tile_t c_tPictureSun = {
     .phwBuffer = (uint16_t *)c_bmpSun,
 };
 
+void Arm2D_Star_centra(PikaObj *self, int x, int y)
+{
+    obj_setInt(self, "centreX", x);
+    obj_setInt(self, "centreY", y);
+}
+void Arm2D_Star_speed(PikaObj *self, float speed)
+{
+    obj_setFloat(self, "angleSpeed", speed);
+}
+
 void Arm2D_Star_init(PikaObj *self)
 {
     obj_setInt(self, "posX", 250);
     obj_setInt(self, "posY", 250);
     obj_setInt(self, "centreX", 0);
     obj_setInt(self, "centreY", 0);
-    obj_setFloat(self, "angleSpeed", 3.0f);
+    obj_setFloat(self, "angleSpeed", 0.5f);
     obj_setFloat(self, "angle", 0.0f);
 
     rotate_tile_t rotateTile = {
@@ -54,8 +64,11 @@ void Arm2D_Star_update(PikaObj *self, int bIsNewFrame, void *ptTile)
     s_tSun->tCentre.iX = obj_getInt(self, "centreX");
     s_tSun->tCentre.iY = obj_getInt(self, "centreY");
     s_tSun->fAngleSpeed = obj_getFloat(self, "angleSpeed");
-    s_tSun->fAngle = obj_getFloat(self, "angle");
 
+    if (bIsNewFrame)
+    {
+        s_tSun->fAngle += s_tSun->fAngleSpeed;
+    }
     arm_2dp_rgb565_tile_rotation(&(s_tSun->tOP),
                                  s_tSun->ptTile,
                                  ptTile,
