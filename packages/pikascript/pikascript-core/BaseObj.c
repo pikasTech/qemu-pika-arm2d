@@ -78,12 +78,14 @@ int32_t obj_newObj(PikaObj *self, char *objPath, char *classPath)
     void *NewObjPtr = getClassPtr(classLoader, classPath);
     if (NULL == NewObjPtr)
     {
+        /* class no found */
         res = 1;
         goto exit;
     }
     PikaObj *objHost = obj_getObj(self, objPath, 1);
     if (NULL == objHost)
     {
+        /* object host no found */
         res = 2;
         goto exit;
     }

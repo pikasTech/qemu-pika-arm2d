@@ -40,7 +40,7 @@ static IMPL_PFB_ON_DRAW(__pfb_draw_handler_t)
     ARM_2D_UNUSED(bIsNewFrame);
 
     obj_setPtr(pikaMain, "ptTile", (void *)ptTile);
-    obj_setPtr(pikaMain, "bIsNewFrame", (void *)bIsNewFrame);
+    obj_setInt(pikaMain, "bIsNewFrame", bIsNewFrame);
     obj_run(pikaMain, "screen.update(ptTile, bIsNewFrame)");
 
     return arm_fsm_rt_cpl;
@@ -68,7 +68,7 @@ void arm_2d_app_init(void)
             LCD_HEIGHT,    //!< screen height
             uint16_t,      //!< colour date type
             LCD_WIDTH,     //!< PFB block width
-            20,            //!< PFB block height
+            80,            //!< PFB block height
             1,             //!< number of PFB in the PFB pool
             {
                 .evtOnLowLevelRendering = {

@@ -22,8 +22,9 @@ void Arm2D_BackGround_setColorMethod(PikaObj *self, Args *args){
 }
 
 void Arm2D_BackGround_updateMethod(PikaObj *self, Args *args){
+    int bIsNewFrame = args_getInt(args, "bIsNewFrame");
     void * ptTile = args_getPtr(args, "ptTile");
-    Arm2D_BackGround_update(self, ptTile);
+    Arm2D_BackGround_update(self, bIsNewFrame, ptTile);
 }
 
 PikaObj *New_Arm2D_BackGround(Args *args){
@@ -31,6 +32,6 @@ PikaObj *New_Arm2D_BackGround(Args *args){
     class_defineMethod(self, "getColor()->str", Arm2D_BackGround_getColorMethod);
     class_defineMethod(self, "init()", Arm2D_BackGround_initMethod);
     class_defineMethod(self, "setColor(color:str)", Arm2D_BackGround_setColorMethod);
-    class_defineMethod(self, "update(ptTile:pointer)", Arm2D_BackGround_updateMethod);
+    class_defineMethod(self, "update(ptTile:pointer,bIsNewFrame:int)", Arm2D_BackGround_updateMethod);
     return self;
 }

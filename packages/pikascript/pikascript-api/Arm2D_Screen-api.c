@@ -18,6 +18,11 @@ void Arm2D_Screen_newBoxMethod(PikaObj *self, Args *args){
     Arm2D_Screen_newBox(self, name);
 }
 
+void Arm2D_Screen_newStarMethod(PikaObj *self, Args *args){
+    char * name = args_getStr(args, "name");
+    Arm2D_Screen_newStar(self, name);
+}
+
 void Arm2D_Screen_updateMethod(PikaObj *self, Args *args){
     int bIsNewFrame = args_getInt(args, "bIsNewFrame");
     void * ptTile = args_getPtr(args, "ptTile");
@@ -32,6 +37,7 @@ PikaObj *New_Arm2D_Screen(Args *args){
     obj_newObj(self, "elems", "Arm2D_ElementList");
     class_defineMethod(self, "init()", Arm2D_Screen_initMethod);
     class_defineMethod(self, "newBox(name:str)", Arm2D_Screen_newBoxMethod);
+    class_defineMethod(self, "newStar(name:str)", Arm2D_Screen_newStarMethod);
     class_defineMethod(self, "update(ptTile:pointer,bIsNewFrame:int)", Arm2D_Screen_updateMethod);
     return self;
 }

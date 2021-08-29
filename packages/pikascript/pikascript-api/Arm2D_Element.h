@@ -15,6 +15,6 @@ void Arm2D_Element_lift(PikaObj *self, int x);
 void Arm2D_Element_move(PikaObj *self, int x, int y);
 void Arm2D_Element_right(PikaObj *self, int x);
 void Arm2D_Element_up(PikaObj *self, int y);
-void Arm2D_Element_update(PikaObj *self, void * ptTile);
+void Arm2D_Element_update(PikaObj *self, int bIsNewFrame, void * ptTile);
 
 #endif

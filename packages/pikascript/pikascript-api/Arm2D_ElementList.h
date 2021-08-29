@@ -9,6 +9,6 @@
 
 PikaObj *New_Arm2D_ElementList(Args *args);
 
-void Arm2D_ElementList_update(PikaObj *self, void * ptTile);
+void Arm2D_ElementList_update(PikaObj *self, int bIsNewFrame, void * ptTile);
 
 #endif
