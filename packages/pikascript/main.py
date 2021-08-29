@@ -20,9 +20,9 @@ screen.background.setColor('white')
 # screen.elems.box1.move(250, 250)
 # screen.elems.box1.setColor('red')
 
-screen.newStar('s1')
-# screen.elems.s1 = Arm2D.Star()
-# screen.elems.s1.init()
+# screen.newStar('s1')
+screen.elems.s1 = Arm2D.Star()
+screen.elems.s1.init()
 
 
 print('hello world')

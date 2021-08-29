@@ -67,6 +67,7 @@ class Star(Element):
         pass
 
 
+
 class Screen(BaseObj):
     background = BackGround()
     elems = ElementList()
