@@ -31,3 +31,14 @@ CPATH = ''
 LPATH = ''
 CXXFLAGS = ''
 POST_ACTION = ''
+
+
+# modified by rtthread.studio.vscode
+DEVICE = ' -mcpu=cortex-m4 -mthumb -ffunction-sections -fdata-sections'
+CFLAGS = DEVICE + ' -Dgcc'
+AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -Wa,-mimplicit-it=thumb '
+LFLAGS = DEVICE + ' -Wl,--gc-sections,-Map=rtthread.map,-cref,-u,Reset_Handler -T linkscripts//STM32F429ZI//link.lds'
+CFLAGS += ' -O0 -gdwarf-2 -g'
+AFLAGS += ' -gdwarf-2'
+CXXFLAGS = CFLAGS
+POST_ACTION = OBJCPY + ' -O binary $TARGET rtthread.bin\n' + SIZE + ' $TARGET \n'
