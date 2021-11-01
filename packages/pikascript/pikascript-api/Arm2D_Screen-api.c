@@ -31,13 +31,15 @@ void Arm2D_Screen_updateMethod(PikaObj *self, Args *args){
 
 PikaObj *New_Arm2D_Screen(Args *args){
     PikaObj *self = New_BaseObj(args);
-    obj_import(self, "Arm2D_BackGround", New_Arm2D_BackGround);
-    obj_newObj(self, "background", "Arm2D_BackGround");
-    obj_import(self, "Arm2D_ElementList", New_Arm2D_ElementList);
-    obj_newObj(self, "elems", "Arm2D_ElementList");
+    obj_newObj(self, "background", "Arm2D_BackGround", New_Arm2D_BackGround);
+    obj_newObj(self, "elems", "Arm2D_ElementList", New_Arm2D_ElementList);
     class_defineMethod(self, "init()", Arm2D_Screen_initMethod);
     class_defineMethod(self, "newBox(name:str)", Arm2D_Screen_newBoxMethod);
     class_defineMethod(self, "newStar(name:str)", Arm2D_Screen_newStarMethod);
     class_defineMethod(self, "update(ptTile:pointer,bIsNewFrame:int)", Arm2D_Screen_updateMethod);
     return self;
+}
+
+Arg *Arm2D_Screen(PikaObj *self){
+    return arg_setMetaObj("", "Arm2D_Screen", New_Arm2D_Screen);
 }

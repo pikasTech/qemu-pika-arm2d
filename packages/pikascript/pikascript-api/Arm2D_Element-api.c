@@ -54,3 +54,7 @@ PikaObj *New_Arm2D_Element(Args *args){
     class_defineMethod(self, "update(ptTile:pointer,bIsNewFrame:int)", Arm2D_Element_updateMethod);
     return self;
 }
+
+Arg *Arm2D_Element(PikaObj *self){
+    return arg_setMetaObj("", "Arm2D_Element", New_Arm2D_Element);
+}

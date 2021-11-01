@@ -7,22 +7,35 @@
 
 PikaObj * pikaScriptInit(){
     PikaObj * pikaMain = newRootObj("pikaMain", New_PikaMain);
-    obj_run(pikaMain, "remove('box')");
-    obj_run(pikaMain, "remove('star')");
-    obj_run(pikaMain, "screen.init()");
-    obj_run(pikaMain, "screen.background.setColor('white')");
-    obj_run(pikaMain, "screen.elems.s1.init()");
-    obj_run(pikaMain, "screen.elems.s2.init()");
-    obj_run(pikaMain, "screen.elems.s3.init()");
-    obj_run(pikaMain, "screen.elems.s1.move(100, 300)");
-    obj_run(pikaMain, "screen.elems.s1.speed(0.1)");
-    obj_run(pikaMain, "screen.elems.s2.centra(100, 100)");
-    obj_run(pikaMain, "screen.elems.s2.speed(0.5)");
-    obj_run(pikaMain, "print('hello world')");
-    obj_run(pikaMain, "print('mem used max:')");
-    obj_run(pikaMain, "mem.max()");
-    obj_run(pikaMain, "print('mem used now:')");
-    obj_run(pikaMain, "mem.now()");
+    obj_run(pikaMain,
+            "\n"
+            "mem = PikaStdLib.MemChecker()\n"
+            "\n"
+            "screen = Arm2D.Screen()\n"
+            "screen.init()\n"
+            "screen.background.setColor('white')\n"
+            "\n"
+            "screen.elems.s1 = Arm2D.Star()\n"
+            "screen.elems.s2 = Arm2D.Star()\n"
+            "screen.elems.s3 = Arm2D.Star()\n"
+            "\n"
+            "screen.elems.s1.init()\n"
+            "screen.elems.s2.init()\n"
+            "screen.elems.s3.init()\n"
+            "\n"
+            "screen.elems.s1.move(100, 300)\n"
+            "screen.elems.s1.speed(0.1)\n"
+            "\n"
+            "screen.elems.s2.centra(100, 100)\n"
+            "screen.elems.s2.speed(0.5)\n"
+            "\n"
+            "print('hello world')\n"
+            "print('mem used max:')\n"
+            "mem.max()\n"
+            "print('mem used now:')\n"
+            "mem.now()\n"
+            "\n"
+            "\n");
     return pikaMain;
 }
 

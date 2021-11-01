@@ -36,3 +36,7 @@ PikaObj *New_Arm2D_Star(Args *args){
     class_defineMethod(self, "update(ptTile:pointer,bIsNewFrame:int)", Arm2D_Star_updateMethod);
     return self;
 }
+
+Arg *Arm2D_Star(PikaObj *self){
+    return arg_setMetaObj("", "Arm2D_Star", New_Arm2D_Star);
+}

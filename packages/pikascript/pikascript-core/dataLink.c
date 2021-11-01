@@ -1,129 +1,87 @@
+/*
+  Author: lyon
+  Tencent QQ: 645275593
+*/
+
 #include "dataLink.h"
+#include "dataArg.h"
 #include "dataLinkNode.h"
 #include "dataMemory.h"
 
-void link_deinit(Link *self)
-{
-    LinkNode *nowNode = self->firstNode;
-    while (NULL != nowNode)
-    {
-        LinkNode *nodeNext = nowNode->nextNode;
+void link_deinit(Link* self) {
+    LinkNode* nowNode = self->firstNode;
+    while (NULL != nowNode) {
+        LinkNode* nodeNext = content_getNext(nowNode);
         linkNode_deinit(nowNode);
         nowNode = nodeNext;
     }
     // DynMemPut(self->mem);
-    pikaFree(self, self->memSize);
+    pikaFree(self, sizeof(Link));
     self = NULL;
 }
 
-void link_addNode(Link *self, void *content, void (*_contentDinit)(void *content))
-{
-    LinkNode *NewNode = New_linkNode(NULL);
-    NewNode->content = content;
-    NewNode->_contentDinit = _contentDinit;
-    NewNode->id = self->TopId;
-    self->TopId++;
-
+void link_addNode(Link* self, void* content) {
     // old first node become new second node
-    LinkNode *secondNode = self->firstNode;
+    LinkNode* secondNode = self->firstNode;
 
+    self->firstNode = content;
     // change the first node to new node
-    self->firstNode = NewNode;
-
-    // link the new first node and second node
-    if (NULL != secondNode)
-    {
-        secondNode->priorNode = self->firstNode;
-    }
-    self->firstNode->nextNode = secondNode;
+    content_setNext(content, secondNode);
 }
 
-void link_removeNode(Link *self, void *content)
-{
-    LinkNode *nodeToDelete = NULL;
-    LinkNode *nodeNow = self->firstNode;
-    while (1)
-    {
-        if (nodeNow->content == content)
-        {
+void link_removeNode(Link* self, void* content) {
+    LinkNode* nodeToDelete = NULL;
+    LinkNode* nodeNow = self->firstNode;
+    LinkNode* priorNode = NULL;
+    while (1) {
+        if (nodeNow == content) {
             nodeToDelete = nodeNow;
             break;
         }
-        if (nodeNow->nextNode == NULL)
-        {
+        if (nodeNow == NULL) {
             // error, node no found
-            return;
+            goto exit;
         }
-        nodeNow = nodeNow->nextNode;
+        priorNode = nodeNow;
+        nodeNow = content_getNext(nodeNow);
     }
 
-    LinkNode *nextNode = nodeToDelete->nextNode;
-    LinkNode *priorNode = nodeToDelete->priorNode;
-    if (nodeToDelete == self->firstNode)
-    {
-        self->firstNode = nodeToDelete->nextNode;
+    LinkNode* nextNode = content_getNext(nodeToDelete);
+    if (nodeToDelete == self->firstNode) {
+        self->firstNode = content_getNext(nodeToDelete);
     }
 
-    if (NULL != priorNode)
-    {
-        priorNode->nextNode = nextNode;
+    if (NULL == priorNode) {
+        self->firstNode = nextNode;
+        goto exit;
     }
 
-    if (NULL != nextNode)
-    {
-        nextNode->priorNode = priorNode;
-    }
+    content_setNext(priorNode, nextNode);
+    goto exit;
 
-    // deinit the node
+// deinit the node
+exit:
     linkNode_deinit(nodeToDelete);
     return;
 }
 
-int32_t link_getSize(Link *self)
-{
-    LinkNode *NowNode;
+int32_t link_getSize(Link* self) {
+    LinkNode* NowNode;
     int32_t size = 0;
     NowNode = self->firstNode;
-    while (NULL != NowNode)
-    {
+    while (NULL != NowNode) {
         size++;
-        NowNode = NowNode->nextNode;
+        NowNode = content_getNext(NowNode);
     }
     return size;
 }
 
-LinkNode *link_getNode(Link *self, int64_t id)
-{
-    LinkNode *nodeNow = self->firstNode;
-    while (1)
-    {
-        if (nodeNow->id == id)
-        {
-            return nodeNow;
-        }
-        if (nodeNow->nextNode == NULL)
-        {
-            return NULL;
-        }
-        nodeNow = nodeNow->nextNode;
-    }
-}
-
-void link_init(Link *self, void *args)
-{
-    /* attribute */
+void link_init(Link* self, void* args) {
     self->firstNode = NULL;
-    self->TopId = 0;
-
-    /* object */
-
-    /* override */
 }
 
-Link *New_link(void *args)
-{
-    Link *self = pikaMalloc(sizeof(Link));
-    self->memSize = sizeof(Link);
+Link* New_link(void* args) {
+    Link* self = pikaMalloc(sizeof(Link));
     link_init(self, args);
     return self;
 }
